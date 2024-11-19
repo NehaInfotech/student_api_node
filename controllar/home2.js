@@ -17,5 +17,23 @@ exports.createdata1 = async(req,res) =>{
     }
 }
 
+exports.showdata1 = async(req,res) =>{
+    const data = req.body
+    try {
+        const show1 = await marksmodel.find(data)
+        res.status(200).json({
+            status: "success",
+            Message: 'data show succes',
+            Data: show1
+        })
+    } catch (error) {
+        res.status(404).json({
+            status: "fail",
+            Message: "not show"
+        })
+  
+    }
+}
+
 
 
