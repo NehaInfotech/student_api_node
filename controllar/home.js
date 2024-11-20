@@ -50,3 +50,19 @@ exports.deletedata = async (req, res) => {
     }
 
 }
+const updatedata= async(req,res)=>{
+    const id = req.params.id;
+    try {
+        const update = await studentmodel.findByIdAndUpdate(id)
+        req.status(200).json({
+            status:"sucsess",
+            message:"data updated successfuly",
+            data:update
+        })
+    } catch (error) {
+        req.status(404).json({
+            status:"fail",
+            message:"data was not updated"
+        })
+    }
+}

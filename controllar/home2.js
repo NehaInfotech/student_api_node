@@ -20,7 +20,7 @@ exports.createdata1 = async(req,res) =>{
 exports.showdata1 = async(req,res) =>{
     const data = req.body
     try {
-        const show1 = await marksmodel.find(data)
+        const show1 = await marksmodel.find().populate("StudentId")
         res.status(200).json({
             status: "success",
             Message: 'data show succes',
@@ -35,6 +35,25 @@ exports.showdata1 = async(req,res) =>{
     }
 }
 
+
+
+exports.deletedata1 = async(req,res) =>{
+    const id = req.params.id
+    try {
+        const del = await marksmodel.findByIdAndDelete(id)
+        res.status(200).json({
+            status: "success",
+            Message: 'data show succes',
+            Data: del
+        })
+    } catch (error) {
+        res.status(404).json({
+            status: "fail",
+            Message: "not show"
+        })
+  
+    }
+}
 
 
 

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const student = require('./schema1')
+// const student = require('./schema1')
 const  marksSchema = new  mongoose.Schema({
     Hindi: {
         type:Number,
@@ -14,6 +14,7 @@ const  marksSchema = new  mongoose.Schema({
         required:true
     },
     StudentId:{
+        // type:mongoose.Schema.Types.ObjectId,
         type:mongoose.Schema.Types.ObjectId,
         required:true,
         ref:'schema1'
