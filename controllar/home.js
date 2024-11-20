@@ -1,9 +1,8 @@
 const studentmodel = require('../model/schema1')
 
-exports.createdata = async(req,res) =>{
-    try 
-    {
-        const smodel = await studentmodel.create(req.body) 
+exports.createdata = async (req, res) => {
+    try {
+        const smodel = await studentmodel.create(req.body)
         res.status(200).json({
             status: 'Success',
             Message: 'Data enter success',
@@ -30,6 +29,24 @@ exports.showdata = async (req, res) => {
             status: "fail",
             Message: "not show"
         })
-  
+
     }
-  }
+}
+exports.deletedata = async (req, res) => {
+    const id = req.params.id
+    try {
+        const deldata = await studentmodel.findByIdAndDelete(id)
+        res.status(200).json({
+            status: "success",
+            message: "data deleted successfuly",
+            data: deldata
+        })
+    } catch (error) {
+        res.status(404).json({
+            status: "fail",
+            message: "not deleted"
+        })
+
+    }
+
+}
