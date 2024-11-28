@@ -29,7 +29,6 @@ exports.showdata = async (req, res) => {
             status: "fail",
             Message: "not show"
         })
-
     }
 }
 exports.deletedata = async (req, res) => {
@@ -46,11 +45,9 @@ exports.deletedata = async (req, res) => {
             status: "fail",
             message: "not deleted"
         })
-
     }
-
 }
-const updatedata= async(req,res)=>{
+exports.updatedata= async(req,res)=>{
     const id = req.params.id;
     try {
         const update = await studentmodel.findByIdAndUpdate(id)
