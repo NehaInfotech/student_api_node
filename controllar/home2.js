@@ -67,17 +67,37 @@ exports.showdata1 = async (req, res) => {
             {
                 $addFields: {
                     min: {
-                        $min: ['$Hindi', '$English', '$Science', '$Maths', 'SS']
+                        $min: ['$Hindi', '$English', '$Science', '$Maths', '$SS']
                     }
                 }
             },
             {
                 $addFields: {
                     max: {
-                        $max: ['$Hindi', '$English', '$Science', '$Maths', 'SS']
+                        $max: ['$Hindi', '$English', '$Science', '$Maths', '$SS']
                     }
                 }
             },
+            {
+                $addFields: {
+                    average: {
+                        $avg: ['$Hindi', '$English', '$Science', '$Maths', 'SS']
+                    }
+                }
+            },
+            {
+                $addFields: {
+                    result: {
+                        $cond: {
+                            if: {
+                                $gt: ['$average', 60]
+                            },
+                            then: 'Pass',
+                            else: 'Fail'
+                        }
+                    }
+                }
+            }
         ])
 
         res.status(200).json({
